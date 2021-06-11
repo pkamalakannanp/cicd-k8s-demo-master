@@ -1,14 +1,14 @@
 pipeline {
   environment {
-    registry = "interviewdot/cicd-k8s-demo"
-    registryCredential = 'docker-hub-credentials'
+    registry = "kamal0405/cicd-k8s-demo"
+    registryCredential = 'Docker Credential'
     dockerImage = ''
   }
   agent any
   stages {
     stage('Compile') {
       steps {
-        git 'https://github.com/net-vinothkumar/cicd-k8s-demo.git'
+        git 'https://github.com/pkamalakannanp/cicd-k8s-demo-master.git'
         script{
                 def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
                 sh "${mvnHome}/bin/mvn package"
@@ -29,7 +29,7 @@ pipeline {
                    * First, the incremental build number from Jenkins
                    * Second, the 'latest' tag.
                    * Pushing multiple tags is cheap, as all the layers are reused. */
-          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+          docker.withRegistry('https://registry.hub.docker.com', 'Docker Credential') {
               dockerImage.push("${env.BUILD_NUMBER}")
               dockerImage.push("latest")
           }
