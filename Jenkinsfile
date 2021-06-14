@@ -11,7 +11,7 @@ pipeline {
         git 'https://github.com/pkamalakannanp/cicd-k8s-demo-master.git'
         script{
                 def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-                sh "${mvnHome}/bin/mvn clean install"
+                sh "${mvnHome}/bin/mvn package"
         }
       }
     }
@@ -29,7 +29,7 @@ pipeline {
                    * First, the incremental build number from Jenkins
                    * Second, the 'latest' tag.
                    * Pushing multiple tags is cheap, as all the layers are reused. */
-          docker.withRegistry('https://registry.hub.docker.com', 'Docker Credential') {
+          docker.withRegistry('https://registry.hub.docker.com', 'Docker Credentials') {
               dockerImage.push("${env.BUILD_NUMBER}")
               dockerImage.push("latest")
           }
