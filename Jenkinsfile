@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "kamal0405/cicd-k8s-demo"
-    registryCredential = 'Docker Credentials'
+    registryCredential = 'docker_credentials'
     dockerImage = ''
   }
   agent any
@@ -29,7 +29,7 @@ pipeline {
                    * First, the incremental build number from Jenkins
                    * Second, the 'latest' tag.
                    * Pushing multiple tags is cheap, as all the layers are reused. */
-          docker.withRegistry('https://registry.hub.docker.com', 'Docker Credentials') {
+          docker.withRegistry('https://registry.hub.docker.com', 'docker_credentials') {
               dockerImage.push("${env.BUILD_NUMBER}")
               dockerImage.push("latest")
           }
