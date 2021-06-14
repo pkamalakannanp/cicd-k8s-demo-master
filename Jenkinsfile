@@ -11,7 +11,7 @@ pipeline {
         git 'https://github.com/pkamalakannanp/cicd-k8s-demo-master.git'
         script{
                 def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-                sh "${mvnHome}/bin/mvn clean install"
+                sh "${mvnHome}/bin/mvn clean"
         }
       }
     }
