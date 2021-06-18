@@ -38,8 +38,6 @@ pipeline {
     }
     stage('Deploy to Kubernetes'){
         steps{
-           withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'mykubeconfignew', namespace: '', serverUrl: '') {
-    // some block
            kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfignew")
 }
        }
