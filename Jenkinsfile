@@ -42,7 +42,7 @@ pipeline {
     // some block
 }
         script {
-          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "mykubeconfig")
+          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "mykubeconfignew")
           }
        }
     }
