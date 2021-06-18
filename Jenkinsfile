@@ -38,9 +38,8 @@ pipeline {
     }
     stage('Deploy to Kubernetes'){
         steps{
-           withKubeConfig([credentialsId: 'mykubeconfig']) {
-          sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"'
-          sh 'chmod u+x ./kubectl'
+           withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'mykubeconfignew', namespace: '', serverUrl: '') {
+    // some block
           sh './kubectl apply -f deployment.yml'
 }
        }
