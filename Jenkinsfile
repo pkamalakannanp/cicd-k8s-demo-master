@@ -39,9 +39,8 @@ pipeline {
     stage('Deploy to Kubernetes'){
         steps{
               withKubeConfig([credentialsId: 'mykubeconfig']) {
-          sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"'
-          sh 'chmod u+x ./kubectl'
-          sh './kubectl apply -f deployment.yml'
+          bat SET PATH=C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin
+          bat kubectl apply -f deployment.yml
        }
         }
     }
