@@ -39,8 +39,8 @@ pipeline {
     stage('Deploy to Kubernetes'){
         steps{
               withKubeConfig([credentialsId: 'mykubeconfig']) {
-          bat SET PATH=C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin
-          bat kubectl apply -f deployment.yml
+          powershell '''SET PATH=C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin
+kubectl apply -f deployment.yml'''
        }
         }
     }
