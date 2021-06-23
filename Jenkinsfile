@@ -38,8 +38,8 @@ pipeline {
     }
     stage('Deploy to Kubernetes'){
         steps{
-          script {
-            kubernetesDeploy configs: 'myweb.yaml', kubeconfigId: 'mykubeconfig'
+          withKubeConfig([credentialsId: 'mykubeconfignew', serverUrl: '']) {
+            powershell 'kubectl apply -f deployment.yml'
                 }
       }
     }
