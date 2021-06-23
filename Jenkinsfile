@@ -38,9 +38,11 @@ pipeline {
     }
     stage('Deploy to Kubernetes'){
         steps{
-          kubeconfig(credentialsId: 'mykubeconfignew', serverUrl: '') {
+          script {
+          withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'mykubeconfignew', namespace: '', serverUrl: '') {
     // some block
 }
+ 
         }
     }
   }
