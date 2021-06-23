@@ -38,8 +38,7 @@ pipeline {
     }
     stage('Deploy to Kubernetes'){
         steps{
-          script {
-           kubeconfig(credentialsId: 'mykubeconfignew', serverUrl: '') {
+          kubeconfig(credentialsId: 'mykubeconfignew', serverUrl: '') {
     // some block
 }
         }
